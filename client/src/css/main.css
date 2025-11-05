@@ -1,0 +1,21 @@
+
+.primary-colour {
+    color: #1E3A8A;
+}
+
+.primary-bg {
+    background-color: #1E3A8A;
+}
+
+.secondary-colour {
+    color: #10B981;
+}
+
+.secondary-bg {
+    background-color: #10B981;
+}
+
+.secondary-border {
+    border: #10B981 2px solid;
+}
+
