@@ -1,13 +1,13 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // components
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 
 // pages
 import Home from "./pages/Home";
-import Footer from './components/Footer';
-
-
+import LogIn from './pages/LogIn';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -19,8 +19,8 @@ function App() {
           {/* open routes */}
           <Route path='/' element={<Home />} />
           <Route path='/home' element={<Home />} />
-          <Route path='/LogIn' element={<Home />} />
-          <Route path='/register' element={<Home />} />
+          <Route path='/LogIn' element={<LogIn />} />
+          <Route path='/register' element={<Register />} />
 
           {/* protected routes */}
           <Route path='/dashboard' element={<Home />} />

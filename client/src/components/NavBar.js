@@ -20,7 +20,7 @@ const NavBar = () => {
 
                 {/* Right: Buttons */}
                 <div className="ms-auto d-flex gap-2">
-                    <Button as={Link} to="/login" className="secondary-bg rounded-3 border-0 ">
+                    <Button as={Link} to="/login" className="secondary-bg rounded-3 secondary-border ">
                         Login
                     </Button>
                     <Button as={Link} to="/register" className="secondary-colour primary-bg secondary-border rounded-3">
