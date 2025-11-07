@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Home from "./pages/Home";
 import LogIn from './pages/LogIn';
 import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
           <Route path='/register' element={<Register />} />
 
           {/* protected routes */}
-          <Route path='/dashboard' element={<Home />} />
+          <Route path='/dashboard' element={<Dashboard />} />
 
         </Routes>
         <Footer />
