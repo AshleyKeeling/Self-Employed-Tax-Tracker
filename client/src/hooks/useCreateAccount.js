@@ -1,20 +1,22 @@
 import { useState } from "react";
 import { useAuthContext } from './useAuthContext'
 
-export const useLogin = () => {
+
+export const useCreateAccount = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(null);
     const { dispatch } = useAuthContext();
 
-    const login = async (firstName, email, password, confirmPassword) => {
+    const createAccount = async (firstName, email, password, confirmPassword) => {
         setIsLoading(true);
         setError(null);
 
-        const response = await fetch('/api/user/login', {
+        const response = await fetch('/api/user/createUser', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ firstName, email, password, confirmPassword })
         })
+
         const json = await response.json();
 
         if (!response.ok) {
@@ -23,7 +25,7 @@ export const useLogin = () => {
         }
 
         if (response.ok) {
-            // save JWT to local storage
+            // save the user to local storage (jwt token)
             localStorage.setItem('user', JSON.stringify(json))
 
             // update Auth Context
@@ -32,5 +34,5 @@ export const useLogin = () => {
             setIsLoading(false);
         }
     }
-    return { login, error, isLoading }
+    return { createAccount, isLoading, error }
 }

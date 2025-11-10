@@ -1,19 +1,17 @@
 import { Container } from "react-bootstrap"
 import { useState } from "react"
 import { Link } from "react-router-dom";
-// import { useSignin } from "../hooks/useSignin";
+import { useLogin } from "../hooks/useLogin";
 
 const LogIn = () => {
-    const [firstName, setFirstName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [keepSignedIn, setKeepSignedIn] = useState(false);
-    // const { signin, error, isLoading } = useSignin();
-    const { signin, error, isLoading } = useState('');
+    const { login, error, isLoading } = useLogin();
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await signin(email, password);
+        await login(email, password);
     }
 
     return (
@@ -58,9 +56,8 @@ const LogIn = () => {
 
                     <p className="body-size mb-0"><strong>Forgot Your Password?</strong></p>
                 </div>
-
+                {error && <div className="text-danger text-center my-2">{error}</div>}
                 <button disabled={isLoading} className="button border secondary-bg text-white rounded text-center py-3 w-100 fw-bold">Log In</button>
-                {error && <div className="error">{error}</div>}
 
                 <hr />
                 <span className="d-flex justify-content-center mb-3">Don't have an account? <Link to="/register" className=" text-black ms-2"><strong>Create Account</strong></Link></span>

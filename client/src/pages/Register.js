@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap"
 import { useState } from "react"
 import { Link } from "react-router-dom";
-// import { useSignin } from "../hooks/useSignin";
+import { useCreateAccount } from "../hooks/useCreateAccount";
 
 const Register = () => {
     const [firstName, setFirstName] = useState('');
@@ -9,12 +9,11 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    // const { signin, error, isLoading } = useSignin();
-    const { signin, error, isLoading } = useState('');
+    const { createAccount, error, isLoading } = useCreateAccount();
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await signin(email, password);
+        await createAccount(firstName, email, password, confirmPassword);
     }
 
     return (
@@ -70,10 +69,9 @@ const Register = () => {
                     />
                 </div>
 
-
+                {error && <div className="text-danger text-center my-2">{error}</div>}
 
                 <button disabled={isLoading} className="button border secondary-bg text-white rounded text-center py-3 w-100 fw-bold">Create Account</button>
-                {error && <div className="error">{error}</div>}
 
                 <hr />
                 <span className="d-flex justify-content-center mb-3">Already have an account? <Link to="/logIn" className=" text-black ms-2"><strong>Log In</strong></Link></span>
