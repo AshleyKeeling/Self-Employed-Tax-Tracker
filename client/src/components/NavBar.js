@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 import { Navbar, Container, Button } from "react-bootstrap";
 import logo from '../assets/logo.png';
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useLogout } from "../hooks/useLogout";
 
 const NavBar = () => {
+    const { user } = useAuthContext();
+    const { logout } = useLogout();
+
+    const handleLogoutClick = () => {
+        logout();
+    }
+
     return (
         <Navbar variant="dark" expand="lg" sticky="top" className="primary-bg">
             <Container >
@@ -19,14 +28,24 @@ const NavBar = () => {
                 </Navbar.Brand>
 
                 {/* Right: Buttons */}
-                <div className="ms-auto d-flex gap-2">
-                    <Button as={Link} to="/login" className="secondary-bg rounded-3 secondary-border ">
-                        Login
-                    </Button>
-                    <Button as={Link} to="/register" className="secondary-colour primary-bg secondary-border rounded-3">
-                        Register
-                    </Button>
-                </div>
+                {/* defualt*/}
+                {!user ?
+                    <div className="ms-auto d-flex gap-2">
+                        <Button as={Link} to="/login" className="secondary-bg rounded-3 secondary-border ">
+                            Login
+                        </Button>
+                        <Button as={Link} to="/register" className="secondary-colour primary-bg secondary-border rounded-3">
+                            Register
+                        </Button>
+                    </div>
+                    :
+                    <div>
+                        <Button onClick={handleLogoutClick} className="secondary-colour primary-bg secondary-border rounded-3">
+                            Log Out
+                        </Button>
+                    </div>
+                }
+                {/* if user is signed in */}
             </Container>
         </Navbar >
     )

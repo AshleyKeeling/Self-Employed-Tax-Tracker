@@ -22,8 +22,8 @@ function App() {
         <NavBar />
         <Routes>
 
-          <Route path='/' element={<Home />} />
-          <Route path='/home' element={<Home />} />
+          <Route path='/' element={!user ? <Home /> : <Navigate to="/Dashboard" />} />
+          <Route path='/home' element={!user ? <Home /> : <Navigate to="/Dashboard" />} />
           <Route path='/login' element={!user ? <LogIn /> : <Navigate to="/Dashboard" />} />
           <Route path='/register' element={!user ? <Register /> : <Navigate to="/Dashboard" />} />
           <Route path='/dashboard' element={user ? <Dashboard /> : <Navigate to="/" />} />

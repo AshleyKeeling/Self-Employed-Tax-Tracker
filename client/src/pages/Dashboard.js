@@ -9,8 +9,12 @@ import Breakdown from "../components/Breakdown";
 import Infographics from "../components/Infographics";
 import RecentActivity from "../components/RecentActivity";
 import Documents from "../components/Documents";
+import { useAuthContext } from "../hooks/useAuthContext";
+
 
 const Dashboard = () => {
+
+    const { user } = useAuthContext();
 
     const items = [
         { title: "Next Payment Due", value: "21 Jan 2026" },
@@ -36,7 +40,7 @@ const Dashboard = () => {
 
     return (
         <Container>
-            <h1 className="display-1 fw-bold mt-5">Welcome Ashley</h1>
+            <h1 className="display-1 fw-bold mt-5">Welcome {user.firstName}</h1>
 
             <section
                 ref={scrollRef}
