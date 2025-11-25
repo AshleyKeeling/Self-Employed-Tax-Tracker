@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import userRoutes from './routes/user.js';
+import taxRecordRoutes from './routes/taxRecord.js';
 
 dotenv.config();
 const app = express();
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
 
 // routes
 app.use('/api/user', userRoutes);
+app.use('/api/taxRecord', taxRecordRoutes);
 app.post("/api/test", (req, res) => {
     res.status(200).json({ message: "POST received", body: req.body });
 });

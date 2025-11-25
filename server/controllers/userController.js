@@ -2,6 +2,7 @@ const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const validator = require('validator');
+const { newTaxRecord } = require('./taxRecordController');
 
 // create JWT token
 const createToken = (_id) => {
@@ -30,7 +31,6 @@ const createUser = async (req, res) => {
             return res.status(400).json({ error: "Password and confirm password do not match" });
         }
 
-
         // Check if user exists
         const exists = await User.findOne({ email });
         if (exists) {
@@ -46,6 +46,15 @@ const createUser = async (req, res) => {
 
         // create JWT token
         const token = createToken(user._id);
+
+
+
+        // create new tax record for the user
+        // { userID, taxYear, totalIncome, totalExpenses, taxFreeAllowance, totalIncomeTaxDue, totalNiDue }
+
+        // const data = [user._id, 2025, 0, 0, 12500, 0, 0];
+        const taxRecord = newTaxRecord({ userID: user._id, taxYear: 2025, totalIncome: 0, totalExpenses: 0, taxFreeAllowance: 12500, totalIncomeTaxDue: 0, totalNiDue: 0 });
+
 
         res.status(200).json({ firstName, email, token });
 
