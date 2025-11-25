@@ -56,7 +56,7 @@ const createUser = async (req, res) => {
         const taxRecord = newTaxRecord({ userID: user._id, taxYear: 2025, totalIncome: 0, totalExpenses: 0, taxFreeAllowance: 12500, totalIncomeTaxDue: 0, totalNiDue: 0 });
 
 
-        res.status(200).json({ firstName, email, token });
+        res.status(200).json({ userID: user._id, firstName, email, token });
 
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -89,7 +89,7 @@ const login = async (req, res) => {
         // create JWT token
         const token = createToken(user._id);
 
-        res.status(200).json({ firstName: user.firstName, email, token })
+        res.status(200).json({ userID: user._id, firstName: user.firstName, email, token })
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
